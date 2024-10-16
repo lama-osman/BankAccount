@@ -1,0 +1,4 @@
+django
+django-rest-framework
+drf-spectacular
+rest_framework_simplejwt

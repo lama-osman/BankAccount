@@ -1,4 +1,6 @@
-django
+django~=5.1.2
 django-rest-framework
-drf-spectacular
-rest_framework_simplejwt
+drf-spectacular~=0.27.2
+
+
+djangorestframework~=3.15.2

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-7&k0cl^ka5^a%er5$mvy6_u=ic&nq58tae!cpnk6#0j!xtsg$(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['','localhost','127.0.0.1']
 
 
 # Application definition
@@ -41,7 +41,10 @@ INSTALLED_APPS = [
     'user',
     'rest_framework',
     'rest_framework.authtoken',
-    'drf_spectacular'
+    'drf_spectacular',
+    'bank_accounts',
+    'django_extensions',
+    'loan'
 ]
 
 MIDDLEWARE = [
@@ -131,18 +134,17 @@ REST_FRAMEWORK = {
 }
 
 
-
-'''
-REST_AUTH ={
-    'USE_JWT': True,
-    'JWT_AUTH_COOKIE':'bank-project',
-    'JWT_AUTH_REFRESH_COOKIE':'bank-project-refresh'
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Your API Title',
+    'DESCRIPTION': 'API description',
+    'VERSION': '1.0.0',
 }
 
-'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
-'''
+# Send a Welcome Email to New Users
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # For Gmail
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'hayamasoud099@gmail.com'  # Your email address
+EMAIL_HOST_USER = 'hayamasoud099@gmail.com'  # Your email address
+EMAIL_HOST_PASSWORD = 'mielnbiibdnmmthl'  # The app password you generated

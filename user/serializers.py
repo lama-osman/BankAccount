@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = get_user_model()
-        fields = ('userId','email', 'password', 'name')
+        fields = ('email', 'password', 'name')
         extra_kwargs = {
             'password': {
                 'write_only': True,
@@ -38,9 +38,11 @@ class UserSerializer(serializers.ModelSerializer):
 
         return user
 
+
+
 class AuthTokenSerializer(serializers.Serializer):
 
-    userId = serializers.CharField()
+    email = serializers.EmailField()
     password = serializers.CharField(
         style= {'input_type': 'password'},
         trim_whitespace=False
@@ -49,11 +51,11 @@ class AuthTokenSerializer(serializers.Serializer):
     def validate(self, attrs):
         """Validate and authenticate the credentials and the user"""
 
-        userId = attrs.get('userId')
+        email = attrs.get('email')
         password = attrs.get('password')
 
         user = authenticate(
-            username=userId,
+            username=email,
             password=password
         )
 
@@ -63,4 +65,3 @@ class AuthTokenSerializer(serializers.Serializer):
 
         attrs['user'] = user
         return attrs
-
